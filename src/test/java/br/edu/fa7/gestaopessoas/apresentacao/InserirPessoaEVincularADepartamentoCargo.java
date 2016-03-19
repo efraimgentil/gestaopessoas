@@ -73,6 +73,9 @@ public class InserirPessoaEVincularADepartamentoCargo {
   public void devePersistirUmDepartamento(){
     Departamento departamento = new Departamento();
     departamento.setNome("ASTIN");
+    Query query = session.createQuery("FROM Cargo a WHERE upper(a.nome) like :nome");
+    query.setParameter("nome" , "PROGRAMADOR");
+    departamento.adicionarCargo((Cargo) query.list().get(0));
     session.persist(departamento);
   }
 

@@ -33,6 +33,10 @@ public class Departamento implements BaseModel {
         this.nome = nome;
     }
 
+    public void adicionarCargo(Cargo cargo){
+        cargos.add(cargo);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
