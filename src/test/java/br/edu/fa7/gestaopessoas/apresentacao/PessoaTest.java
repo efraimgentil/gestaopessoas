@@ -73,6 +73,16 @@ public class PessoaTest {
 
     @Test
     public void deveriaSalvarUmaPessoaJuridica() throws Exception {
+        Cargo cargo = new Cargo();
+        cargo.setNome("Outsourcing Impressoras");
+        cargo.setSalario(new BigDecimal(15000));
+        pessoaDao.salvar(cargo);
+
+        Departamento ti = new Departamento();
+        ti.setNome("TI");
+        pessoaDao.salvar(ti);
+
+
         PessoaJuridica pj1 = new PessoaJuridica();
 
         pj1.setCnpj("35.507.574/0001-35");
@@ -81,7 +91,24 @@ public class PessoaTest {
 
         pessoaDao.salvar(pj1);
 
-        Pessoa pessoa = pessoaDao.getPessoa(pj1.getId());
+        Vinculo vinculo = new Vinculo();
+        vinculo.setInicio(new Date());
+        vinculo.setCargo(cargo);
+        vinculo.setDepartamento(ti);
+        vinculo.setPessoa(pj1);
+        pessoaDao.salvar(vinculo);
+
+        pj1.setVinculoAtual(vinculo);
+        pessoaDao.salvar(pj1);
+
+
+        Assert.assertNotNull("deveria existir id", pj1.getId());
+
+        PessoaJuridica pessoa = (PessoaJuridica) pessoaDao.getPessoa(pj1.getId());
+
         Assert.assertEquals("nome", pj1.getName(), pessoa.getName());
+        Assert.assertEquals("cargo", vinculo.getCargo().getNome(), pessoa.getVinculoAtual().getCargo().getNome());
+        Assert.assertEquals("departamento", vinculo.getDepartamento().getNome(), pessoa.getVinculoAtual().getDepartamento().getNome());
+//        Assert.assertEquals("quantidade de vinculos", 1, pf1.getVinculos().size());
     }
 }
