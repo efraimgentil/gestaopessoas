@@ -16,4 +16,10 @@ public class HibernateFactory {
         return s;
     }
 
+    public static synchronized void closeFactory(){
+        if(!sf.isClosed()) {
+            sf.close();
+        }
+    }
+
 }
