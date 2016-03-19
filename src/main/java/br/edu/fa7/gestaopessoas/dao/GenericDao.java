@@ -6,7 +6,7 @@ import org.hibernate.Session;
 
 import java.util.List;
 
-public abstract class GenericDao {
+public abstract class GenericDao<T> {
 
     protected final Session session;
 
@@ -22,11 +22,11 @@ public abstract class GenericDao {
         session.delete(bm);
     }
 
-    public List<BaseModel> listarTodos(Class bm) {
+    public List<T> listarTodos(Class<T> bm) {
         return session.createQuery("from " + bm.getName() + " e where e.estaAtivo = true").list();
     }
 
-    public List<BaseModel> listarTodosComLimite(Class bm, Integer limite) {
+    public List<T> listarTodosComLimite(Class<T> bm, Integer limite) {
         return session.createQuery("from " + bm.getName() + " e where e.estaAtivo = true").setMaxResults(limite).list();
     }
 

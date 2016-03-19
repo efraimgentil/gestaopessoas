@@ -63,7 +63,7 @@ public class PessoaTest {
 
         Assert.assertNotNull("deveria existir id", pf1.getId());
 
-        PessoaFisica pessoa = (PessoaFisica) pessoaDao.getPessoa(pf1.getId());
+        PessoaFisica pessoa = (PessoaFisica) pessoaDao.buscarPorId(pf1.getId());
 
         Assert.assertEquals("nome", pf1.getName(), pessoa.getName());
         Assert.assertEquals("cargo", vinculo.getCargo().getNome(), pessoa.getVinculoAtual().getCargo().getNome());
@@ -104,7 +104,7 @@ public class PessoaTest {
 
         Assert.assertNotNull("deveria existir id", pj1.getId());
 
-        PessoaJuridica pessoa = (PessoaJuridica) pessoaDao.getPessoa(pj1.getId());
+        PessoaJuridica pessoa = (PessoaJuridica) pessoaDao.buscarPorId(pj1.getId());
 
         Assert.assertEquals("nome", pj1.getName(), pessoa.getName());
         Assert.assertEquals("cargo", vinculo.getCargo().getNome(), pessoa.getVinculoAtual().getCargo().getNome());

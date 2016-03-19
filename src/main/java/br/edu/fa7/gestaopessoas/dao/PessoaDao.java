@@ -9,7 +9,7 @@ public class PessoaDao extends GenericDao {
         super();
     }
 
-    public Pessoa getPessoa(Integer id) throws Exception {
+    public Pessoa buscarPorId(Integer id) throws Exception {
         String consulta = "from Pessoa p where p.id = :id ";
         return (Pessoa) super.session.createQuery(consulta).setParameter("id", id).uniqueResult();
     }
