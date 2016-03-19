@@ -5,28 +5,28 @@ import br.edu.fa7.gestaopessoas.factory.HibernateFactory;
 import br.edu.fa7.gestaopessoas.models.*;
 import br.edu.fa7.gestaopessoas.util.DataUtil;
 import org.hibernate.Session;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Date;
 
-public class PessoaTest {
+public class PessoaDaoTest {
     PessoaDao pessoaDao;
     private Session session;
 
-    @Before
+    @BeforeMethod
     public void setup() throws Exception {
         session = HibernateFactory.getHibernateSession();
         session.beginTransaction();
         pessoaDao = new PessoaDao();
     }
 
-    @After
+    @AfterMethod
     public void cleanup() {
         session.getTransaction().commit();
     }
@@ -61,7 +61,7 @@ public class PessoaTest {
         pessoaDao.salvar(pf1);
 
 
-        Assert.assertNotNull("deveria existir id", pf1.getId());
+        Assert.assertNotNull(pf1.getId(), "deveria existir id");
 
         PessoaFisica pessoa = (PessoaFisica) pessoaDao.buscarPorId(pf1.getId());
 
@@ -102,7 +102,7 @@ public class PessoaTest {
         pessoaDao.salvar(pj1);
 
 
-        Assert.assertNotNull("deveria existir id", pj1.getId());
+        Assert.assertNotNull(pj1.getId(), "deveria existir id");
 
         PessoaJuridica pessoa = (PessoaJuridica) pessoaDao.buscarPorId(pj1.getId());
 

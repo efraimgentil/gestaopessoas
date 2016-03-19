@@ -4,26 +4,26 @@ import br.edu.fa7.gestaopessoas.dao.CargoDao;
 import br.edu.fa7.gestaopessoas.factory.HibernateFactory;
 import br.edu.fa7.gestaopessoas.models.Cargo;
 import org.hibernate.Session;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-public class CargoTest {
+public class CargoDaoTest {
     CargoDao cargoDao;
     private Session session;
 
-    @Before
+    @BeforeMethod
     public void setup() throws Exception {
         session = HibernateFactory.getHibernateSession();
         session.beginTransaction();
         cargoDao = new CargoDao();
     }
 
-    @After
+    @AfterMethod
     public void cleanup() {
         session.getTransaction().commit();
     }
