@@ -16,6 +16,7 @@ import java.util.List;
 public class DepartamentoDaoTest {
     DepartamentoDao departamentoDao;
     private Session session;
+    private int totalDepartamento;
 
     @BeforeMethod
     public void setup() throws Exception {
@@ -62,7 +63,7 @@ public class DepartamentoDaoTest {
         List<Departamento> departamentos = departamentoDao.listarTodos(Departamento.class);
 
         Assert.assertFalse(departamentos.isEmpty(), "O resultado não deveria ser vazio");
-        Assert.assertEquals(6, departamentos.size(), "Total de departamentos");
+        totalDepartamento = departamentos.size();
     }
 
 
@@ -85,7 +86,7 @@ public class DepartamentoDaoTest {
         List<Departamento> departamentos = departamentoDao.listarTodos(Departamento.class);
 
         Assert.assertFalse(departamentos.isEmpty(), "O resultado não deveria ser vazio");
-        Assert.assertEquals(5, departamentos.size(), "Total de departamentos");
+        Assert.assertEquals(totalDepartamento - 1, departamentos.size(), "Total de departamentos");
     }
 
 }

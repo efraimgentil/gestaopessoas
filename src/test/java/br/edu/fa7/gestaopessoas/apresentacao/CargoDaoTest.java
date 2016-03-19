@@ -1,10 +1,8 @@
 package br.edu.fa7.gestaopessoas.apresentacao;
 
 import br.edu.fa7.gestaopessoas.dao.CargoDao;
-import br.edu.fa7.gestaopessoas.dao.DepartamentoDao;
 import br.edu.fa7.gestaopessoas.factory.HibernateFactory;
 import br.edu.fa7.gestaopessoas.models.Cargo;
-import br.edu.fa7.gestaopessoas.models.Departamento;
 import org.hibernate.Session;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -17,6 +15,7 @@ import java.util.List;
 public class CargoDaoTest {
     CargoDao cargoDao;
     private Session session;
+    private int totalDeCargos;
 
     @BeforeMethod
     public void setup() throws Exception {
@@ -53,7 +52,7 @@ public class CargoDaoTest {
         List<Cargo> cargos = cargoDao.listarTodos(Cargo.class);
 
         Assert.assertFalse(cargos.isEmpty(), "O resultado não deveria ser vazio");
-        Assert.assertEquals(6, cargos.size(), "Total de cargos");
+        totalDeCargos = cargos.size();
     }
 
     @Test(priority = 3)
@@ -74,7 +73,7 @@ public class CargoDaoTest {
         List<Cargo> cargos = cargoDao.listarTodos(Cargo.class);
 
         Assert.assertFalse(cargos.isEmpty(), "O resultado não deveria ser vazio");
-        Assert.assertEquals(5, cargos.size(), "Total de cargos");
+        Assert.assertEquals(totalDeCargos - 1, cargos.size(), "Total de cargos");
     }
 
 }

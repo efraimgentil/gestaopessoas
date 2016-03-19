@@ -17,6 +17,12 @@
         <property name="connection.username">postgres</property>
         <property name="connection.password">postgres</property>
 
+        <property name="hibernate.c3p0.min_size">5</property><!-- default: 1  -->
+        <property name="hibernate.c3p0.max_size">20</property><!-- default: 100  -->
+        <property name="hibernate.c3p0.timeout">300</property><!-- default: 0 (nunca expira)  -->
+        <property name="hibernate.c3p0.max_statements">50</property><!-- default: 0 (não faz cache)  -->
+        <property name="hibernate.c3p0.idle_test_period">1000</property><!-- default: 0 (não faz teste de conexões inativas)  -->
+        <property name="defaultAutoCommit">false</property>
         <property name="hibernate.current_session_context_class">thread</property>
         <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size">1</property>
