@@ -17,6 +17,7 @@
         <property name="connection.username">postgres</property>
         <property name="connection.password">postgres</property>
 
+        <property name="hibernate.current_session_context_class">thread</property>
         <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size">1</property>
         <!-- SQL dialect -->
@@ -29,6 +30,8 @@
         <property name="hbm2ddl.auto">create-drop</property>
 
         <mapping class="br.edu.fa7.gestaopessoas.models.Pessoa" />
+        <mapping class="br.edu.fa7.gestaopessoas.models.PessoaFisica" />
+        <mapping class="br.edu.fa7.gestaopessoas.models.PessoaJuridica" />
         <mapping class="br.edu.fa7.gestaopessoas.models.Cargo" />
         <mapping class="br.edu.fa7.gestaopessoas.models.Departamento" />
         <mapping class="br.edu.fa7.gestaopessoas.models.Vinculo" />
