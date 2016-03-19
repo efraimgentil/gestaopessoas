@@ -43,13 +43,18 @@ public class CargoDaoTest {
         cargoDao.salvar(engenheiro);
         cargoDao.salvar(qualidade);
         cargoDao.salvar(gerente);
+    }
+
+    @Test(priority = 2)
+    public void deveriaExistirVariosCargos() throws Exception {
 
         List<Cargo> cargos = cargoDao.listarTodos(Cargo.class);
 
         Assert.assertFalse(cargos.isEmpty(), "O resultado não deveria ser vazio");
+        Assert.assertEquals(6, cargos.size(), "Total de cargos");
     }
 
-    @Test(priority = 2)
+    @Test(priority = 3)
     public void deveriaRemoverUmCargo() throws Exception {
         List<Cargo> cargos = cargoDao.buscarPorNome("Analista de Qualidade");
 
@@ -61,4 +66,12 @@ public class CargoDaoTest {
         Assert.assertTrue(cargos.isEmpty(), "O resultado deveria está vázio");
     }
 
+    @Test(priority = 4)
+    public void deveriaVerificarSeFoiRemovido() throws Exception {
+
+        List<Cargo> cargos = cargoDao.listarTodos(Cargo.class);
+
+        Assert.assertFalse(cargos.isEmpty(), "O resultado não deveria ser vazio");
+        Assert.assertEquals(5, cargos.size(), "Total de cargos");
+    }
 }
