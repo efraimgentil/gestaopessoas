@@ -28,8 +28,8 @@ public class DepartamentoDaoTest {
         session.getTransaction().commit();
     }
 
-    @Test
-    public void deveriaSalvarVariosCargos() throws Exception {
+    @Test(priority = 1)
+    public void deveriaSalvarVariosDepartamentos() throws Exception {
         Departamento ti = new Departamento("TI");
         Departamento logistica = new Departamento("Logistica");
         Departamento comercial = new Departamento("Comercial");
@@ -47,6 +47,19 @@ public class DepartamentoDaoTest {
         List<Cargo> cargos = departamentoDao.listarTodos(Departamento.class);
 
         Assert.assertFalse(cargos.isEmpty(), "O resultado não deveria ser vazio");
+    }
+
+
+    @Test(priority = 2)
+    public void deveriaRemoverUmDepartamento() throws Exception {
+        List<Departamento> departamentos = departamentoDao.buscarPorNome("Almoxarifado");
+
+        Assert.assertFalse(departamentos.isEmpty(), "O resultado não deveria está vázio");
+        departamentoDao.deletar(departamentos.get(0));
+
+        departamentos = departamentoDao.buscarPorNome("Analista de Qualidade");
+
+        Assert.assertTrue(departamentos.isEmpty(), "O resultado deveria está vázio");
     }
 
 }
