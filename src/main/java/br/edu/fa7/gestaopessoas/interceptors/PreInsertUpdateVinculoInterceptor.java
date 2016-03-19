@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.event.spi.*;
 
+import javax.persistence.PersistenceException;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ public class PreInsertUpdateVinculoInterceptor implements PreInsertEventListener
   public boolean onPreInsert(PreInsertEvent preInsertEvent) {
     Object entity = preInsertEvent.getEntity();
     if(entity instanceof Vinculo){
-      verificaDepartamentoCargoDoVinculo( (Vinculo) entity );
+      verificaDepartamentoCargoDoVinculo( (Vinculo) entity , preInsertEvent.getSession() );
     }
     return false;
   }
@@ -28,15 +29,16 @@ public class PreInsertUpdateVinculoInterceptor implements PreInsertEventListener
   public boolean onPreUpdate(PreUpdateEvent preUpdateEvent) {
     Object entity = preUpdateEvent.getEntity();
     if(entity instanceof Vinculo){
-      verificaDepartamentoCargoDoVinculo( (Vinculo) entity );
+      verificaDepartamentoCargoDoVinculo( (Vinculo) entity , preUpdateEvent.getSession() );
     }
     return false;
   }
 
-  protected void verificaDepartamentoCargoDoVinculo(Vinculo vinculo){
+  protected void verificaDepartamentoCargoDoVinculo(Vinculo vinculo, EventSource session){
     Departamento departamento = vinculo.getDepartamento();
     if(!departamento.getCargos().contains(  vinculo.getCargo() ) ){
-      throw new IllegalStateException("Departamento (" + vinculo.getDepartamento() +") não comporta o cargo especificado (" + vinculo.getCargo() + ").");
+      session.getTransaction().markRollbackOnly();
+      throw new PersistenceException("Departamento (" + vinculo.getDepartamento() +") não comporta o cargo especificado (" + vinculo.getCargo() + ").");
     }
   }
 
