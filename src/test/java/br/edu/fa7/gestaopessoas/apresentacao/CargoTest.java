@@ -32,10 +32,10 @@ public class CargoTest {
     public void deveriaSalvarVariosCargos() throws Exception {
         Cargo desenvolvedor = new Cargo("Desenvolvedor", new BigDecimal(3000));
         Cargo analista = new Cargo("Analista de Sistemas", new BigDecimal(5000));
-        Cargo arquiteto = new Cargo("Arquiteto de Software", new BigDecimal(5000));
-        Cargo engenheiro = new Cargo("Engenheiro de Software", new BigDecimal(5000));
-        Cargo qualidade = new Cargo("Analista de Qualidade", new BigDecimal(5000));
-        Cargo gerente = new Cargo("Gerente de TI", new BigDecimal(5000));
+        Cargo arquiteto = new Cargo("Arquiteto de Software", new BigDecimal(7000));
+        Cargo engenheiro = new Cargo("Engenheiro de Software", new BigDecimal(6500));
+        Cargo qualidade = new Cargo("Analista de Qualidade", new BigDecimal(4000));
+        Cargo gerente = new Cargo("Gerente de TI", new BigDecimal(12000));
 
         cargoDao.salvar(desenvolvedor);
         cargoDao.salvar(analista);
