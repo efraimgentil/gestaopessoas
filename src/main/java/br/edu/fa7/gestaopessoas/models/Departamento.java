@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="departamento")
-public class Departamento {
+public class Departamento implements BaseModel {
 
   @Id
   @GeneratedValue(strategy =  GenerationType.IDENTITY)

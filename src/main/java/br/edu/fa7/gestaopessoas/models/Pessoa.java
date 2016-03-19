@@ -16,6 +16,7 @@ public abstract class Pessoa implements BaseModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Basic(optional = false)
     private String name;
 
     @ManyToOne(cascade = CascadeType.REFRESH)

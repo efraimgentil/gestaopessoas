@@ -5,6 +5,7 @@ import br.edu.fa7.gestaopessoas.factory.HibernateFactory;
 import br.edu.fa7.gestaopessoas.models.Pessoa;
 import br.edu.fa7.gestaopessoas.models.PessoaFisica;
 import br.edu.fa7.gestaopessoas.models.PessoaJuridica;
+import br.edu.fa7.gestaopessoas.models.Vinculo;
 import br.edu.fa7.gestaopessoas.util.DataUtil;
 import org.hibernate.Session;
 import org.junit.After;
@@ -33,6 +34,7 @@ public class PessoaTest {
 
     @Test
     public void deveriaSalvarUmaPessoaFisica() throws Exception {
+        Vinculo
         PessoaFisica pf1 = new PessoaFisica();
         pf1.setName("Clairton");
 

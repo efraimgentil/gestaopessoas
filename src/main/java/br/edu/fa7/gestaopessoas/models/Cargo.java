@@ -8,7 +8,7 @@ import java.math.BigDecimal;
  */
 @Entity
 @Table(name="cargo")
-public class Cargo {
+public class Cargo implements BaseModel{
 
   @Id
   @GeneratedValue(strategy =  GenerationType.IDENTITY)
