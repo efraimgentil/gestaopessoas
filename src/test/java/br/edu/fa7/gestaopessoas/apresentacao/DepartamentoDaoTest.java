@@ -2,7 +2,6 @@ package br.edu.fa7.gestaopessoas.apresentacao;
 
 import br.edu.fa7.gestaopessoas.dao.DepartamentoDao;
 import br.edu.fa7.gestaopessoas.factory.HibernateFactory;
-import br.edu.fa7.gestaopessoas.models.Cargo;
 import br.edu.fa7.gestaopessoas.models.Departamento;
 import org.hibernate.Session;
 import org.testng.Assert;
@@ -43,14 +42,19 @@ public class DepartamentoDaoTest {
         departamentoDao.salvar(rh);
         departamentoDao.salvar(setorPessoal);
         departamentoDao.salvar(almoxarifado);
+    }
 
-        List<Cargo> cargos = departamentoDao.listarTodos(Departamento.class);
+    @Test(priority = 2)
+    public void deveriaExistirVariosDepartamentos() throws Exception {
 
-        Assert.assertFalse(cargos.isEmpty(), "O resultado não deveria ser vazio");
+        List<Departamento> departamentos = departamentoDao.listarTodos(Departamento.class);
+
+        Assert.assertFalse(departamentos.isEmpty(), "O resultado não deveria ser vazio");
+        Assert.assertEquals(6, departamentos.size(), "Total de departamentos");
     }
 
 
-    @Test(priority = 2)
+    @Test(priority = 3)
     public void deveriaRemoverUmDepartamento() throws Exception {
         List<Departamento> departamentos = departamentoDao.buscarPorNome("Almoxarifado");
 
@@ -60,6 +64,16 @@ public class DepartamentoDaoTest {
         departamentos = departamentoDao.buscarPorNome("Analista de Qualidade");
 
         Assert.assertTrue(departamentos.isEmpty(), "O resultado deveria está vázio");
+    }
+
+
+    @Test(priority = 4)
+    public void deveriaVerificarSeFoiRemovido() throws Exception {
+
+        List<Departamento> departamentos = departamentoDao.listarTodos(Departamento.class);
+
+        Assert.assertFalse(departamentos.isEmpty(), "O resultado não deveria ser vazio");
+        Assert.assertEquals(5, departamentos.size(), "Total de departamentos");
     }
 
 }
