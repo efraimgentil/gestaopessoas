@@ -2,6 +2,7 @@ package br.edu.fa7.gestaopessoas.models;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Created by efraimgentil<efraimgentil@gmail.com> on 14/03/16.
@@ -20,6 +21,9 @@ public class Cargo implements BaseModel {
 
     @Column(nullable = false, scale = 4)
     private BigDecimal salario;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "cargos")
+    private List<Departamento> departamentos;
 
     public Cargo() {
     }
@@ -77,4 +81,11 @@ public class Cargo implements BaseModel {
         this.salario = salario;
     }
 
+    public List<Departamento> getDepartamentos() {
+        return departamentos;
+    }
+
+    public void setDepartamentos(List<Departamento> departamentos) {
+        this.departamentos = departamentos;
+    }
 }

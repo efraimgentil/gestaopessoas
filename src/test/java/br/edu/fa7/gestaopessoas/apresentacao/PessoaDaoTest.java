@@ -65,9 +65,9 @@ public class PessoaDaoTest {
 
         PessoaFisica pessoa = (PessoaFisica) pessoaDao.buscarPorId(pf1.getId());
 
-        Assert.assertEquals("nome", pf1.getName(), pessoa.getName());
-        Assert.assertEquals("cargo", vinculo.getCargo().getNome(), pessoa.getVinculoAtual().getCargo().getNome());
-        Assert.assertEquals("departamento", vinculo.getDepartamento().getNome(), pessoa.getVinculoAtual().getDepartamento().getNome());
+        Assert.assertEquals(pf1.getName(), pessoa.getName(), "nome");
+        Assert.assertEquals(vinculo.getCargo().getNome(), pessoa.getVinculoAtual().getCargo().getNome(), "cargo");
+        Assert.assertEquals(vinculo.getDepartamento().getNome(), pessoa.getVinculoAtual().getDepartamento().getNome(), "departamento");
 //        Assert.assertEquals("quantidade de vinculos", 1, pf1.getVinculos().size());
     }
 
@@ -106,9 +106,9 @@ public class PessoaDaoTest {
 
         PessoaJuridica pessoa = (PessoaJuridica) pessoaDao.buscarPorId(pj1.getId());
 
-        Assert.assertEquals("nome", pj1.getName(), pessoa.getName());
-        Assert.assertEquals("cargo", vinculo.getCargo().getNome(), pessoa.getVinculoAtual().getCargo().getNome());
-        Assert.assertEquals("departamento", vinculo.getDepartamento().getNome(), pessoa.getVinculoAtual().getDepartamento().getNome());
+        Assert.assertEquals(pj1.getName(), pessoa.getName(), "nome");
+        Assert.assertEquals(vinculo.getCargo().getNome(), pessoa.getVinculoAtual().getCargo().getNome(), "cargo");
+        Assert.assertEquals(vinculo.getDepartamento().getNome(), pessoa.getVinculoAtual().getDepartamento().getNome(), "departamento");
 //        Assert.assertEquals("quantidade de vinculos", 1, pf1.getVinculos().size());
     }
 }
