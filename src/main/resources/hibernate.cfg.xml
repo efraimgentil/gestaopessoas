@@ -42,6 +42,14 @@
         <mapping class="br.edu.fa7.gestaopessoas.models.Departamento" />
         <mapping class="br.edu.fa7.gestaopessoas.models.Vinculo" />
 
+
+        <event type="pre-insert">
+            <listener class="br.edu.fa7.gestaopessoas.interceptors.PreInsertUpdateVinculoInterceptor" />
+        </event>
+        <event type="pre-update">
+            <listener class="br.edu.fa7.gestaopessoas.interceptors.PreInsertUpdateVinculoInterceptor" />
+        </event>
+
     </session-factory>
 
 </hibernate-configuration>
