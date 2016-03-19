@@ -23,11 +23,11 @@ public abstract class GenericDao<T> {
     }
 
     public List<T> listarTodos(Class<T> bm) {
-        return session.createQuery("from " + bm.getName() + " e where e.estaAtivo = true").list();
+        return session.createQuery("from " + bm.getName()).list();
     }
 
     public List<T> listarTodosComLimite(Class<T> bm, Integer limite) {
-        return session.createQuery("from " + bm.getName() + " e where e.estaAtivo = true").setMaxResults(limite).list();
+        return session.createQuery("from " + bm.getName()).setMaxResults(limite).list();
     }
 
 }
