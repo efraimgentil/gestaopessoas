@@ -28,7 +28,7 @@ public class CargoDaoTest {
         session.getTransaction().commit();
     }
 
-    @Test
+    @Test(priority = 1)
     public void deveriaSalvarVariosCargos() throws Exception {
         Cargo desenvolvedor = new Cargo("Desenvolvedor", new BigDecimal(3000));
         Cargo analista = new Cargo("Analista de Sistemas", new BigDecimal(5000));
@@ -47,6 +47,18 @@ public class CargoDaoTest {
         List<Cargo> cargos = cargoDao.listarTodos(Cargo.class);
 
         Assert.assertFalse(cargos.isEmpty(), "O resultado não deveria ser vazio");
+    }
+
+    @Test(priority = 2)
+    public void deveriaRemoverUmCargo() throws Exception {
+        List<Cargo> cargos = cargoDao.buscarPorNome("Analista de Qualidade");
+
+        Assert.assertFalse(cargos.isEmpty(), "O resultado não deveria está vázio");
+        cargoDao.deletar(cargos.get(0));
+
+        cargos = cargoDao.buscarPorNome("Analista de Qualidade");
+
+        Assert.assertTrue(cargos.isEmpty(), "O resultado deveria está vázio");
     }
 
 }
