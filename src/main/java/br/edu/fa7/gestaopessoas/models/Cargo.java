@@ -2,6 +2,7 @@ package br.edu.fa7.gestaopessoas.models;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public class Cargo implements BaseModel {
     private BigDecimal salario;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "cargos")
-    private List<Departamento> departamentos;
+    private List<Departamento> departamentos = new ArrayList<>();
 
     public Cargo() {
     }
@@ -87,5 +88,10 @@ public class Cargo implements BaseModel {
 
     public void setDepartamentos(List<Departamento> departamentos) {
         this.departamentos = departamentos;
+    }
+
+    public void addDepartamento(Departamento departamento) {
+        if (departamento != null)
+            departamentos.add(departamento);
     }
 }

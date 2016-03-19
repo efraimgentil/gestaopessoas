@@ -1,6 +1,7 @@
 package br.edu.fa7.gestaopessoas.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public class Departamento implements BaseModel {
             joinColumns = @JoinColumn(name = "id_departamento"),
             inverseJoinColumns = @JoinColumn(name = "id_cargo")
     )
-    private List<Cargo> cargos;
+    private List<Cargo> cargos = new ArrayList<>();
 
     public Departamento() {
     }
@@ -68,5 +69,9 @@ public class Departamento implements BaseModel {
 
     public void setCargos(List<Cargo> cargos) {
         this.cargos = cargos;
+    }
+
+    public void addCargo(Cargo cargo) {
+        cargos.add(cargo);
     }
 }

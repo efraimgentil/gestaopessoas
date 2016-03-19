@@ -1,8 +1,10 @@
 package br.edu.fa7.gestaopessoas.apresentacao;
 
 import br.edu.fa7.gestaopessoas.dao.CargoDao;
+import br.edu.fa7.gestaopessoas.dao.DepartamentoDao;
 import br.edu.fa7.gestaopessoas.factory.HibernateFactory;
 import br.edu.fa7.gestaopessoas.models.Cargo;
+import br.edu.fa7.gestaopessoas.models.Departamento;
 import org.hibernate.Session;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -74,4 +76,5 @@ public class CargoDaoTest {
         Assert.assertFalse(cargos.isEmpty(), "O resultado não deveria ser vazio");
         Assert.assertEquals(5, cargos.size(), "Total de cargos");
     }
+
 }
