@@ -21,7 +21,8 @@
         <property name="hibernate.c3p0.max_size">20</property><!-- default: 100  -->
         <property name="hibernate.c3p0.timeout">300</property><!-- default: 0 (nunca expira)  -->
         <property name="hibernate.c3p0.max_statements">50</property><!-- default: 0 (não faz cache)  -->
-        <property name="hibernate.c3p0.idle_test_period">1000</property><!-- default: 0 (não faz teste de conexões inativas)  -->
+        <property name="hibernate.c3p0.idle_test_period">1000
+        </property><!-- default: 0 (não faz teste de conexões inativas)  -->
         <property name="defaultAutoCommit">false</property>
         <property name="hibernate.current_session_context_class">thread</property>
         <!-- JDBC connection pool (use the built-in) -->
@@ -34,20 +35,29 @@
         <!-- Drop and re-create the database schema on startup -->
         <property name="default_schema">gestaopessoas</property>
         <property name="hbm2ddl.auto">create-drop</property>
+        <property name="connection.provider_class">org.hibernate.c3p0.internal.C3P0ConnectionProvider</property>
 
-        <mapping class="br.edu.fa7.gestaopessoas.models.Pessoa" />
-        <mapping class="br.edu.fa7.gestaopessoas.models.PessoaFisica" />
-        <mapping class="br.edu.fa7.gestaopessoas.models.PessoaJuridica" />
-        <mapping class="br.edu.fa7.gestaopessoas.models.Cargo" />
-        <mapping class="br.edu.fa7.gestaopessoas.models.Departamento" />
-        <mapping class="br.edu.fa7.gestaopessoas.models.Vinculo" />
 
+        <property name="hibernate.cache.use_query_cache">true</property>
+        <property name="hibernate.max_fetch_depth">2</property>
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+
+        <mapping class="br.edu.fa7.gestaopessoas.models.Pessoa"/>
+        <mapping class="br.edu.fa7.gestaopessoas.models.PessoaFisica"/>
+        <mapping class="br.edu.fa7.gestaopessoas.models.PessoaJuridica"/>
+        <mapping class="br.edu.fa7.gestaopessoas.models.Cargo"/>
+        <mapping class="br.edu.fa7.gestaopessoas.models.Departamento"/>
+        <mapping class="br.edu.fa7.gestaopessoas.models.Vinculo"/>
+
+        <class-cache class="br.edu.fa7.gestaopessoas.models.Cargo" usage="read-write"/>
+        <class-cache class="br.edu.fa7.gestaopessoas.models.Departamento" usage="read-write"/>
 
         <event type="pre-insert">
-            <listener class="br.edu.fa7.gestaopessoas.interceptors.PreInsertUpdateVinculoInterceptor" />
+            <listener class="br.edu.fa7.gestaopessoas.interceptors.PreInsertUpdateVinculoInterceptor"/>
         </event>
         <event type="pre-update">
-            <listener class="br.edu.fa7.gestaopessoas.interceptors.PreInsertUpdateVinculoInterceptor" />
+            <listener class="br.edu.fa7.gestaopessoas.interceptors.PreInsertUpdateVinculoInterceptor"/>
         </event>
 
     </session-factory>
