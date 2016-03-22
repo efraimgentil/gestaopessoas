@@ -61,13 +61,15 @@ public class CargoDaoTest {
 
         Assert.assertFalse(cargos.isEmpty(), "O resultado não deveria está vázio");
         cargoDao.deletar(cargos.get(0));
-
-        cargos = cargoDao.buscarPorNome("Analista de Qualidade");
-
-        Assert.assertTrue(cargos.isEmpty(), "O resultado deveria está vázio");
     }
 
     @Test(priority = 4)
+    public void deveriaConfirmarRemocaoDoCargo() throws Exception {
+        List<Cargo> cargos = cargoDao.buscarPorNome("Analista de Qualidade");
+        Assert.assertTrue(cargos.isEmpty(), "O resultado deveria está vázio");
+    }
+
+    @Test(priority = 5)
     public void deveriaVerificarSeFoiRemovido() throws Exception {
 
         List<Cargo> cargos = cargoDao.listarTodos(Cargo.class);
